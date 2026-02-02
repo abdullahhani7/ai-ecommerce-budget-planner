@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "./_components/Navbar";
 
 const notoSans = Noto_Sans({ variable: "--font-sans" });
 
@@ -31,9 +32,10 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <Navbar />
           {children}
         </body>
-      </html>{" "}
+      </html>
     </ClerkProvider>
   );
 }
