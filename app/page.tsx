@@ -106,7 +106,7 @@ const page = async () => {
 
       {/* Featured Products */}
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 px-5">
         <div className="container mx-auto px-4 space-y-12">
           <div className="flex justify-between items-end">
             <div>
@@ -175,7 +175,7 @@ const page = async () => {
       </section>
 
       {/* Categories Carousel */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 px-6">
         <div className="container mx-auto px-4">
           <CategoryCarousel categories={categories} />
         </div>

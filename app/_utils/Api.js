@@ -25,3 +25,20 @@ export const getCategories = async () => {
     return null;
   }
 };
+
+export const getProductById = async (productId) => {
+  try {
+    let { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", productId)
+      .single();
+
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching product by id:", error.message);
+    return [];
+  }
+};
