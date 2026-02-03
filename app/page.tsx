@@ -1,12 +1,12 @@
 import React from "react";
 import { BudgetPlannerSheet } from "./_components/BudgetPlannerSheet";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const page = () => {
   return (
-    <main className="flex flex-col min-h-screen"> 
+    <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-emerald-900 text-white overflow-hidden py-24 sm:py-32">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2574&q=80')] bg-cover bg-center opacity-30 "></div>
@@ -35,6 +35,64 @@ const page = () => {
 
           <div className="flex items-center justify-center">
             <BudgetPlannerSheet />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-2xl bg-emerald-50/50">
+            <div className="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-2">
+              <Leaf className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">100% Organic</h3>
+            <p className="text-gray-600">
+              Sourced directly from certified organic farms ensuring quality.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-2xl bg-emerald-50/50">
+            <div className="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-2">
+              <Truck className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">Fast Delivery</h3>
+            <p className="text-gray-600">
+              Same-day delivery for orders placed before 2 PM in your area.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-2xl bg-emerald-50/50">
+            <div className="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-2">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">Fresh Guarantee</h3>
+            <p className="text-gray-600">
+              Not satisfied? We'll refund your money if produce isn't fresh.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+
+      <section className="py-20 bg-gray-50"> 
+        <div className="container mx-auto px-4 space-y-12">
+          <div className="flex justify-between items-end">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                Fresh Arrivals
+              </h2>
+              <p className="text-gray-600 mt-2">
+                Check out the latest additions to our store.
+              </p>
+            </div>
+            <Link
+              href="/products"
+              className="text-emerald-600 font-semibold hover:text-emerald-700 hover:underline flex items-center"
+            >
+              View All <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
