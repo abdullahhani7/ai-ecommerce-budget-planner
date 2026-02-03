@@ -3,17 +3,24 @@ import { BudgetPlannerSheet } from "./_components/BudgetPlannerSheet";
 import Link from "next/link";
 import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getFeaturedProducts } from "./_utils/Api";
+import { getCategories, getFeaturedProducts } from "./_utils/Api";
 import Image from "next/image";
+import { CategoryCarousel } from "@/components/ui/category-carousel";
 
-
-
-
+async function fetchCategories() {
+  try {
+    const categories = await getCategories();
+    return categories;
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
+    return [];
+  }
+}
 
 async function fetchFeaturedProducts() {
   try {
     const products = await getFeaturedProducts();
-    console.log("products", products);
+    // console.log("products", products);
     return products;
   } catch (error) {
     console.error("Failed to fetch products:", error);
@@ -23,8 +30,10 @@ async function fetchFeaturedProducts() {
 
 const page = async () => {
   const featuredProducts = await fetchFeaturedProducts();
-  console.log(featuredProducts);
   console.log("featuredProducts", featuredProducts);
+
+  const categories = await fetchCategories();
+  console.log("categories", categories);
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -164,6 +173,15 @@ const page = async () => {
             ))}
         </div>
       </section>
+
+      {/* Categories Carousel */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <CategoryCarousel categories={categories} />
+        </div>
+      </section>
+
+    
     </main>
   );
 };
