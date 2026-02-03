@@ -18,7 +18,7 @@ function Navbar({ cart }: { cart?: any }) {
           href="/"
           className="text-xl font-bold text-emerald-700 flex items-center gap-2"
         >
-          <Image width={120} height={120} src="/logo.png" alt="logo" />
+          <Image width={110} height={110} src="/logo.png" alt="logo" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
