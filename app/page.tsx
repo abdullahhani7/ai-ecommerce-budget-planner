@@ -181,7 +181,90 @@ const page = async () => {
         </div>
       </section>
 
-    
+      {/* How It Works Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Simpler Grocery Shopping
+            </h2>
+            <p className="text-gray-600 mt-4 text-lg">
+              Our AI-powered platform helps you plan meals, track your budget,
+              and shop efficiently.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Connector Line (Desktop) */}
+            <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-emerald-200 via-emerald-400 to-emerald-200 -z-10"></div>
+
+            <div className="flex flex-col items-center text-center bg-white">
+              <div className="h-24 w-24 bg-emerald-100 rounded-full flex items-center justify-center mb-6 shadow-md border-4 border-white">
+                <span className="text-3xl font-bold text-emerald-600">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Set Your Budget
+              </h3>
+              <p className="text-gray-600">
+                Tell us how much you want to spend and your dietary preferences.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center bg-white">
+              <div className="h-24 w-24 bg-emerald-100 rounded-full flex items-center justify-center mb-6 shadow-md border-4 border-white">
+                <span className="text-3xl font-bold text-emerald-600">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Get AI Plan
+              </h3>
+              <p className="text-gray-600">
+                We generate a complete meal plan and optimization shopping list
+                for you.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center bg-white">
+              <div className="h-24 w-24 bg-emerald-100 rounded-full flex items-center justify-center mb-6 shadow-md border-4 border-white">
+                <span className="text-3xl font-bold text-emerald-600">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                One-Click Shop
+              </h3>
+              <p className="text-gray-600">
+                Purchase all ingredients instantly with our integrated checkout.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-24 bg-emerald-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-20"></div>
+        <div className="container mx-auto px-4 relative flex flex-col items-center text-center space-y-8">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Join the EcoCart Community
+          </h2>
+          <p className="text-emerald-100 max-w-xl text-lg">
+            Get exclusive offers, healthy recipes, and budget-saving tips
+            delivered straight to your inbox.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              className="flex-1 border-white border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            />
+            <Button
+              size="lg"
+              className="bg-emerald-500 hover:bg-emerald-400 text-white font-semibold whitespace-nowrap px-8"
+            >
+              Subscribe
+            </Button>
+          </div>
+          <p className="text-xs text-emerald-200/60 mt-4">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </section>
     </main>
   );
 };
