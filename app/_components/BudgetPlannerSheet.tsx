@@ -17,13 +17,13 @@ export function BudgetPlannerSheet() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button
+        {/* <Button
           variant="outline"
           className="gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
-        >
+        > */}
           <Bot className="h-4 w-4" />
           Ask AI Budget Planner
-        </Button>
+        {/* </Button> */}
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

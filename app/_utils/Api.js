@@ -1,5 +1,14 @@
 import supabase from "../supabase";
 
 export const getFeaturedProducts = async () => {
-  let { data, error } = await supabase.from("products").select("id");
+  try {
+    let { data, error } = await supabase.from("products").select("*");
+
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error("Error Get Featured Products :", error.message);
+    return null;
+  }
 };
