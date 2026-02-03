@@ -3,8 +3,29 @@ import { BudgetPlannerSheet } from "./_components/BudgetPlannerSheet";
 import Link from "next/link";
 import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getFeaturedProducts } from "./_utils/Api";
+import Image from "next/image";
 
-const page = () => {
+
+
+
+
+async function fetchFeaturedProducts() {
+  try {
+    const products = await getFeaturedProducts();
+    console.log("products", products);
+    return products;
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    return [];
+  }
+}
+
+const page = async () => {
+  const featuredProducts = await fetchFeaturedProducts();
+  console.log(featuredProducts);
+  console.log("featuredProducts", featuredProducts);
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -76,7 +97,7 @@ const page = () => {
 
       {/* Featured Products */}
 
-      <section className="py-20 bg-gray-50"> 
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 space-y-12">
           <div className="flex justify-between items-end">
             <div>
@@ -94,6 +115,53 @@ const page = () => {
               View All <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {featuredProducts &&
+            featuredProducts.map((product: any) => (
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
+              >
+                <div
+                  key={product.id}
+                  className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {/* Image Section */}
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  <div className="p-4 flex-1 flex flex-col">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 line-clamp-2 mt-1 mb-4 flex-1">
+                      {product.description}
+                    </p>
+                    <div className="flex flex-col items-center justify-between mt-auto">
+                      <span className="font-bold text-lg text-emerald-900">
+                        ${Number(product.price).toFixed(2)}
+                      </span>
+                      <Button
+                        variant="secondary"
+                        className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 w-full p-2"
+                      >
+                        Add To Cart
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
         </div>
       </section>
     </main>
