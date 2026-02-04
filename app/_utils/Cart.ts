@@ -3,6 +3,54 @@
 import { auth } from "@clerk/nextjs/server";
 import supabase from "../supabase";
 
+// get cart
+export async function getCart() {
+  const { userId } = await auth();
+  if (!userId) return null;
+
+  const { data: cart, error } = await supabase
+    .from("carts")
+    .select(
+      `
+      id,
+      clerk_user_id,
+      created_at,
+      updated_at,
+      cart_items (
+        id,
+        quantity,
+        product_id,
+        products (
+          id,
+          name,
+          price,
+          image,
+          created_at,
+          updated_at
+        )
+      )
+    `,
+    )
+    .eq("clerk_user_id", userId)
+    .single();
+
+  if (error || !cart) return null;
+
+  return {
+    ...cart,
+    createdAt: cart.created_at,
+    updatedAt: cart.updated_at,
+    items: cart.cart_items.map((item: any) => ({
+      ...item,
+      product: {
+        ...item.products,
+        price: item.products.price.toString(),
+        createdAt: item.products.created_at,
+        updatedAt: item.products.updated_at,
+      },
+    })),
+  };
+}
 
 // add to cart
 export async function addToCart(productId: string, quantity: number = 1) {
