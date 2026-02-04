@@ -1,3 +1,4 @@
+import AddToCartButton from "@/app/_components/AddToCartButton";
 import { getProductById } from "@/app/_utils/Api";
 import { Check } from "lucide-react";
 import Image from "next/image";
@@ -12,7 +13,7 @@ const page = async ({ params }: ProductPageProps) => {
   const { id } = await params;
 
   const product = await getProductById(id);
-  console.log("product", product);
+  // console.log("product", product);
 
   if (!product) {
     notFound();
@@ -24,7 +25,8 @@ const page = async ({ params }: ProductPageProps) => {
     number
   > | null;
 
-  console.log("nutritionalInfo:", nutritionalInfo);
+  // console.log("nutritionalInfo:", nutritionalInfo);
+  
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -103,8 +105,9 @@ const page = async ({ params }: ProductPageProps) => {
               </div>
             </div>
           )}
-
-       
+          <div className="pt-8 border-t border-gray-100">
+            <AddToCartButton productId={product.id} size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white min-w-[200px]" />
+          </div>
         </div>
       </div>
     </div>
