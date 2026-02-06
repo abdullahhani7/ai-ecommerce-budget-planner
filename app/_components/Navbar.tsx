@@ -5,6 +5,7 @@ import { Package } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CartSheet from "./CartSheet";
 // import { Button } from './ui/button'
 // import CartSheet from './CartSheet'
 
@@ -46,7 +47,7 @@ function Navbar({ cart }: { cart?: any }) {
                   />
                 </UserButton.MenuItems>
               </UserButton>
-              {/* <CartSheet initialCart={cart} /> */}
+              <CartSheet initialCart={cart} />
             </>
           ) : (
             isLoaded && (

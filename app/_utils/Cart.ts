@@ -86,3 +86,22 @@ export async function addItemToCart(productId: string, quantity: number = 1) {
 
   return { success: true };
 }
+
+export async function removeFromCart(itemId: string) {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized");
+
+  const { data: cart } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("clerk_user_id", userId)
+    .single();
+
+  if (!cart) return;
+
+  await supabase
+    .from("cart_items")
+    .delete()
+    .eq("id", itemId)
+    .eq("cart_id", cart.id);
+}
