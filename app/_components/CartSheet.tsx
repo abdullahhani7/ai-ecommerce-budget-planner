@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { getCart, removeFromCart } from "../_utils/Cart";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { createCheckoutSession } from "../_utils/Checkout";
 
 type CartWithItems = any;
 
@@ -68,17 +69,17 @@ function CartSheet({ initialCart }: { initialCart?: any }) {
   };
 
   const handleCheckout = async () => {
-      if (!cart) return;
-      startTransition(async () => {
-          try {
-              const result = await createCheckoutSession();
-              if (result?.url) {
-                  router.push(result.url);
-              }
-          } catch (e) {
-              console.error("Checkout failed", e);
-          }
-      });
+    if (!cart) return;
+    startTransition(async () => {
+      try {
+        const result = await createCheckoutSession();
+        if (result?.url) {
+          router.push(result.url);
+        }
+      } catch (e) {
+        console.error("Checkout failed", e);
+      }
+    });
   };
 
   return (
