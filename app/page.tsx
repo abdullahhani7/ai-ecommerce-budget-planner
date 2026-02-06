@@ -30,7 +30,7 @@ async function fetchFeaturedProducts() {
 
 const page = async () => {
   const featuredProducts = await fetchFeaturedProducts();
-  console.log("featuredProducts", featuredProducts);
+  // console.log("featuredProducts", featuredProducts);
 
   const categories = await fetchCategories();
   console.log("categories", categories);

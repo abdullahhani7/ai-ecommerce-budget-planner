@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { Check, Loader2, ShoppingCart } from "lucide-react";
-import { addToCart } from "../_utils/Cart";
+import { addItemToCart } from "../_utils/Cart";
 import { Button } from "@/components/ui/button";
 
 interface AddToCartButtonProps {
@@ -24,10 +24,11 @@ export function AddToCartButton({
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
   const router = useRouter();
+
   const handleAdd = () => {
     startTransition(async () => {
       try {
-        await addToCart(productId);
+        await addItemToCart(productId);
         setSuccess(true);
         toast.success("Item added to cart");
         setTimeout(() => setSuccess(false), 2000);

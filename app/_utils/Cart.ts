@@ -15,7 +15,6 @@ export async function getCart() {
       id,
       clerk_user_id,
       created_at,
-      updated_at,
       cart_items (
         id,
         quantity,
@@ -25,8 +24,7 @@ export async function getCart() {
           name,
           price,
           image,
-          created_at,
-          updated_at
+          created_at
         )
       )
     `,
@@ -34,28 +32,15 @@ export async function getCart() {
     .eq("clerk_user_id", userId)
     .single();
 
-  if (error || !cart) return null;
+  if (error || !cart) return error;
 
-  return {
-    ...cart,
-    createdAt: cart.created_at,
-    updatedAt: cart.updated_at,
-    items: cart.cart_items.map((item: any) => ({
-      ...item,
-      product: {
-        ...item.products,
-        price: item.products.price.toString(),
-        createdAt: item.products.created_at,
-        updatedAt: item.products.updated_at,
-      },
-    })),
-  };
+  return cart;
 }
 
 // add to cart
-export async function addToCart(productId: string, quantity: number = 1) {
+export async function addItemToCart(productId: string, quantity: number = 1) {
   const { userId } = await auth();
-//   console.log("userId", userId);
+  console.log("userId", userId);
 
   if (!userId) throw new Error("Unauthorized");
 
@@ -80,7 +65,7 @@ export async function addToCart(productId: string, quantity: number = 1) {
   const { data: existingItem } = await supabase
     .from("cart_items")
     .select("id, quantity")
-    .eq("cart_id", cart.id)
+    .eq("cart_id", cart?.id)
     .eq("product_id", productId)
     .single();
 
@@ -93,7 +78,7 @@ export async function addToCart(productId: string, quantity: number = 1) {
       .eq("id", existingItem.id);
   } else {
     await supabase.from("cart_items").insert({
-      cart_id: cart.id,
+      cart_id: cart?.id,
       product_id: productId,
       quantity,
     });
