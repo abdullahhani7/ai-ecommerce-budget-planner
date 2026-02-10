@@ -15,14 +15,12 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 
-
 type Category = {
   id: number;
   name: string;
   slug: string;
   image?: string | null;
 };
-
 
 interface CategoryCarouselProps {
   categories: Category[];
@@ -31,7 +29,7 @@ interface CategoryCarouselProps {
 export function CategoryCarousel({ categories }: CategoryCarouselProps) {
   return (
     <div className="w-full relative">
-      <div className="flex justify-between items-end mb-8 px-1">
+      <div className="flex justify-between items-end mb-8  ">
         <div>
           <h2 className="text-3xl font-bold text-gray-900">Shop by Category</h2>
           <p className="text-gray-600 mt-2">
@@ -87,8 +85,8 @@ export function CategoryCarousel({ categories }: CategoryCarouselProps) {
           ))}
         </CarouselContent>
         <div className="hidden md:block">
-          <CarouselPrevious className="-left-4 lg:-left-12 h-10 w-10 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300" />
-          <CarouselNext className="-right-4 lg:-right-12 h-10 w-10 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300" />
+          <CarouselPrevious className="-left-4 lg:-left-2 h-10 w-10 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300" />
+          <CarouselNext className="-right-4 lg:-right-2 h-10 w-10 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300" />
         </div>
       </Carousel>
     </div>
