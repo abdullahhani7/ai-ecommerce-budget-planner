@@ -40,7 +40,7 @@ export async function getCart() {
 // add to cart
 export async function addItemToCart(productId: string, quantity: number = 1) {
   const { userId } = await auth();
-  console.log("userId", userId);
+  // console.log("userId", userId);
 
   if (!userId) throw new Error("Unauthorized");
 
@@ -87,6 +87,7 @@ export async function addItemToCart(productId: string, quantity: number = 1) {
   return { success: true };
 }
 
+// remove to cart
 export async function removeFromCart(itemId: string) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
@@ -104,4 +105,60 @@ export async function removeFromCart(itemId: string) {
     .delete()
     .eq("id", itemId)
     .eq("cart_id", cart.id);
+}
+
+// ai for adding all to cart
+export async function addAllToCart(
+  items: { productId: string; quantity: number }[],
+) {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized");
+
+  // 1️⃣ get or create cart
+  let { data: cart } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("clerk_user_id", userId)
+    .single();
+
+  if (!cart) {
+    const { data: newCart } = await supabase
+      .from("carts")
+      .insert({ clerk_user_id: userId })
+      .select()
+      .single();
+
+    cart = newCart!;
+  }
+
+  const cartId = cart?.id;
+
+  // 2️⃣ process items
+  await Promise.all(
+    items.map(async (item) => {
+      const { data: existingItem } = await supabase
+        .from("cart_items")
+        .select("id, quantity")
+        .eq("cart_id", cartId)
+        .eq("product_id", item.productId)
+        .single();
+
+      if (existingItem) {
+        await supabase
+          .from("cart_items")
+          .update({
+            quantity: existingItem.quantity + item.quantity,
+          })
+          .eq("id", existingItem.id);
+      } else {
+        await supabase.from("cart_items").insert({
+          cart_id: cartId,
+          product_id: item.productId,
+          quantity: item.quantity,
+        });
+      }
+    }),
+  );
+
+  return { success: true };
 }
