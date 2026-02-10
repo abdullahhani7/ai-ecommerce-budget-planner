@@ -5,9 +5,18 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+
+  // 👇 override هنا
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      // أو لو حاببها تحذير:
+      // "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
+
   // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",

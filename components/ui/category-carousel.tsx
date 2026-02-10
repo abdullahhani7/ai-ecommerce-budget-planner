@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+// import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 // import { Category } from "@prisma/client";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,7 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 type Category = {
   id: number;

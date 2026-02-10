@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Loader2, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 function AddToCartSection({ plan }: { plan: any }) {
   const [loading, setLoading] = useState(false);
@@ -62,10 +63,12 @@ function AddToCartSection({ plan }: { plan: any }) {
             {plan.matchedProducts.map((p: any) => (
               <li key={p.id} className="flex items-center gap-3">
                 <div className="h-10 w-10 overflow-hidden rounded bg-gray-100 shrink-0">
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.name}
                     className="h-full w-full object-cover"
+                    width={100}
+                    height={100}
                   />
                 </div>
                 <div className="flex-1">
