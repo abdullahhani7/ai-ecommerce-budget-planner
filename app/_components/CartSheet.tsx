@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
 import { getCart, removeFromCart } from "../_utils/Cart";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { createCheckoutSession } from "../_utils/Checkout";
+import { cn } from "@/lib/utils";
 
 type CartWithItems = any;
 
@@ -85,14 +86,25 @@ function CartSheet({ initialCart }: { initialCart?: any }) {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger>
-        {/* <Button variant="ghost" size="icon" className="relative"> */}
-        <ShoppingCart className="h-5 w-5" />
-        {itemCount > 0 && (
-          <span className="absolute -top-1 -right-1 h-4 w-4 bg-emerald-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none">
-            {itemCount}
-          </span>
-        )}
-        {/* </Button> */}
+        <div
+          className={cn(
+            buttonVariants({
+              variant: "ghost",
+              size: "icon",
+              className: "relative cursor-pointer",
+            }),
+          )}
+          role="button"
+          tabIndex={0}
+        >
+          <ShoppingCart style={{ width: "25px", height: "25px"}} />
+
+          {itemCount > 0 && (
+            <span className="absolute -top-1 -right-1 h-4 w-4 bg-emerald-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none">
+              {itemCount}
+            </span>
+          )}
+        </div>
       </SheetTrigger>
 
       <SheetContent className="flex flex-col h-full w-full sm:max-w-md">
@@ -116,7 +128,7 @@ function CartSheet({ initialCart }: { initialCart?: any }) {
               <p>Start adding fresh products!</p>
             </div>
           ) : (
-            <ul className="space-y-4">
+            <ul className="space-y-4 p-2">
               {cart?.cart_items &&
                 cart.cart_items.map((item: any) => (
                   <li key={item.id} className="flex gap-4 items-center">
@@ -140,7 +152,7 @@ function CartSheet({ initialCart }: { initialCart?: any }) {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="text-red-400 hover:text-red-500 hover:bg-red-50"
+                      className="text-red-400 cursor-pointer hover:text-red-500 hover:bg-red-50"
                       onClick={() => handleRemove(item.id)}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -159,7 +171,7 @@ function CartSheet({ initialCart }: { initialCart?: any }) {
                 <span>${calculateTotal().toFixed(2)}</span>
               </div>
               <Button
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white h-12 text-lg"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white h-12 text-lg cursor-pointer"
                 onClick={handleCheckout}
                 disabled={isPending}
               >
