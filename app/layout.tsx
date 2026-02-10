@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./_components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { getCart } from "./_utils/Cart";
+import Footer from "./_components/Footer";
 
 const notoSans = Noto_Sans({ variable: "--font-sans" });
 
@@ -29,7 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cart = await getCart();
-  console.log("getCart", cart);
+  // console.log("getCart", cart);
 
   return (
     <ClerkProvider>
@@ -40,6 +41,7 @@ export default async function RootLayout({
           <Navbar cart={cart} />
           {children}
           <Toaster />
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>
