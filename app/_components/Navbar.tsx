@@ -38,6 +38,7 @@ function Navbar({ cart }: { cart?: any }) {
         <div className="flex items-center gap-4">
           {isLoaded && user ? (
             <>
+              <CartSheet initialCart={cart} />
               <UserButton afterSignOutUrl="/">
                 <UserButton.MenuItems>
                   <UserButton.Link
@@ -47,7 +48,6 @@ function Navbar({ cart }: { cart?: any }) {
                   />
                 </UserButton.MenuItems>
               </UserButton>
-              <CartSheet initialCart={cart} />
             </>
           ) : (
             isLoaded && (

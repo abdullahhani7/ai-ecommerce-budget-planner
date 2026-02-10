@@ -33,7 +33,7 @@ const page = async () => {
   // console.log("featuredProducts", featuredProducts);
 
   const categories = await fetchCategories();
-  console.log("categories", categories);
+  // console.log("categories", categories);getCart
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -107,8 +107,8 @@ const page = async () => {
       {/* Featured Products */}
 
       <section className="py-20 bg-gray-50 px-5">
-        <div className="container mx-auto px-4 space-y-12">
-          <div className="flex justify-between items-end">
+        <div className="container mx-auto  space-y-12">
+          <div className="flex justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-900">
                 Fresh Arrivals
@@ -175,7 +175,7 @@ const page = async () => {
       </section>
 
       {/* Categories Carousel */}
-      <section className="py-16 bg-gray-50 px-6">
+      <section className="py-16 bg-gray-50   ">
         <div className="container mx-auto px-4">
           <CategoryCarousel categories={categories} />
         </div>
@@ -251,7 +251,7 @@ const page = async () => {
             <input
               type="email"
               placeholder="Enter your email address"
-              className="flex-1 border-white border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="flex-1 border-white border rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-400"
             />
             <Button
               size="lg"
@@ -260,7 +260,7 @@ const page = async () => {
               Subscribe
             </Button>
           </div>
-          <p className="text-xs text-emerald-200/60 mt-4">
+          <p className="text-xs text-emerald-100/60 mt-4">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
