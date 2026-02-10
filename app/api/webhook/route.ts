@@ -4,8 +4,10 @@ import Stripe from "stripe";
 import supabase from "@/app/supabase";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-11-20",
+  apiVersion: "2025-12-15.clover",
 });
+
+
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -17,7 +19,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
@@ -29,6 +31,7 @@ export async function POST(req: Request) {
   if (event.type === "checkout.session.completed") {
     const userId = session.metadata?.userId;
     const cartId = session.metadata?.cartId;
+    console.log("cartId", cartId);
 
     if (!userId || !cartId) {
       console.error("[Webhook] Missing metadata");
@@ -54,7 +57,8 @@ export async function POST(req: Request) {
       // 2️⃣ get cart with items + products
       const { data: cart, error: cartError } = await supabase
         .from("carts")
-        .select(`
+        .select(
+          `
           id,
           cart_items (
             id,
@@ -64,7 +68,8 @@ export async function POST(req: Request) {
               price
             )
           )
-        `)
+        `,
+        )
         .eq("id", cartId)
         .single();
 
@@ -98,7 +103,7 @@ export async function POST(req: Request) {
           product_id: item.products.id,
           quantity: item.quantity,
           price: item.products.price,
-        }))
+        })),
       );
 
       // 5️⃣ clear cart
@@ -107,10 +112,9 @@ export async function POST(req: Request) {
       console.log("[Webhook] Cart cleared");
     } catch (error: any) {
       console.error("Error processing webhook:", error);
-      return new NextResponse(
-        `Internal Server Error: ${error.message}`,
-        { status: 500 }
-      );
+      return new NextResponse(`Internal Server Error: ${error.message}`, {
+        status: 500,
+      });
     }
   }
 

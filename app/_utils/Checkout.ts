@@ -5,7 +5,7 @@ import Stripe from "stripe";
 import supabase from "../supabase";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-12-15.clover",
+  apiVersion: "2025-12-15.clover", // Latest API version
 });
 
 export async function createCheckoutSession() {
@@ -45,9 +45,11 @@ export async function createCheckoutSession() {
         name: item.products.name,
         images: [item.products.image],
       },
-      unit_amount: Math.round(Number(item.products.price) * 100),
+      unit_amount: Math.round(Number(item.products.price) * 100), // Stripe expects cents
     },
     quantity: item.quantity,
+    // 10.50 دولار.
+    // 1050
   }));
 
   // 3️⃣ create checkout session
