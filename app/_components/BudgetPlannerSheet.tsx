@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Bot } from "lucide-react";
 import BudgetPlanner from "./BudgetPlanner";
+import { cn } from "@/lib/utils";
 
 export function BudgetPlannerSheet() {
   return (
@@ -22,11 +25,26 @@ export function BudgetPlannerSheet() {
           variant="outline"
           className="gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
         > */}
+
+        <div
+          className={cn(
+            buttonVariants({
+              variant: "outline",
+              size: "default",
+              className:
+                "gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50",
+            }),
+          )}
+          role="button"
+          tabIndex={0}
+        >
           <Bot className="h-4 w-4" />
           Ask AI Budget Planner
+        </div>
+
         {/* </Button> */}
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-emerald-800">
             AI Budget Planner
@@ -53,8 +71,7 @@ export function BudgetPlannerSheet() {
           </SheetClose>
         </SheetFooter> */}
 
-            <BudgetPlanner />
-
+        <BudgetPlanner />
       </SheetContent>
     </Sheet>
   );
