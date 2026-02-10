@@ -50,7 +50,7 @@ export function BudgetPlannerSheet() {
             AI Budget Planner
           </SheetTitle>
           <SheetDescription>
-            Tell us your budget, and we'll create a meal plan and shopping list
+            Tell us your budget, and we&apos;ll create a meal plan and shopping list
             for you.
           </SheetDescription>
         </SheetHeader>

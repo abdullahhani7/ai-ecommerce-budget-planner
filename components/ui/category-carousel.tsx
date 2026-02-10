@@ -13,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 // import { Button } from "@/components/ui/button";
 
 type Category = {
@@ -64,12 +65,14 @@ export function CategoryCarousel({ categories }: CategoryCarouselProps) {
                 <Card className="h-full border-2 border-transparent hover:border-emerald-100 transition-all duration-300 hover:shadow-lg rounded-2xl overflow-hidden bg-white">
                   <CardContent className="p-0 flex flex-col h-full">
                     <div className="relative aspect-square overflow-hidden bg-emerald-50">
-                      <img
+                      <Image
                         src={
                           category.image || "https://via.placeholder.com/150"
                         }
                         alt={category.name}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        width={100}
+                        height={100}
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                     </div>

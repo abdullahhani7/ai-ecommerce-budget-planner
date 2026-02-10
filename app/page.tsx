@@ -98,7 +98,8 @@ const page = async () => {
             </div>
             <h3 className="text-xl font-bold text-gray-900">Fresh Guarantee</h3>
             <p className="text-gray-600">
-              Not satisfied? We'll refund your money if produce isn't fresh.
+              Not satisfied? We&apos;ll refund your money if produce isn&apos;t
+              fresh.
             </p>
           </div>
         </div>
@@ -177,7 +178,7 @@ const page = async () => {
       {/* Categories Carousel */}
       <section className="py-16 bg-gray-50   ">
         <div className="container mx-auto px-4">
-          <CategoryCarousel categories={categories} />
+          {categories && <CategoryCarousel categories={categories} />}
         </div>
       </section>
 
