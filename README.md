@@ -27,5 +27,5 @@ This project enables users to generate personalized meal plans and budgets using
 1. Clone the repository:
 
 ```bash
-git clone <GitHub Repo URL>
-cd <project-folder>
+git clone https://github.com/abdullahhani7/ai-ecommerce-budget-planner
+cd ai-ecommerce-budget-planner
