@@ -34,8 +34,15 @@ export function AddToCartButton({
         setTimeout(() => setSuccess(false), 2000);
         router.refresh(); // Update cart count in navbar potentially
       } catch (error) {
-        console.error("Failed to add to cart", error);
-        toast.error("Failed to add to cart");
+        // console.error("Failed to add to cart", error);
+        // toast.error("Failed to add to cart");
+        toast("Login Required", {
+          description: "You need to login first to add this item to your cart.",
+          classNames: {
+            title: " text-lg",
+            description: "!text-gray-500 text-sm",
+          },
+        });
       }
     });
   };
