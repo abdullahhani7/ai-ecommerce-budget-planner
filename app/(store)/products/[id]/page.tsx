@@ -29,7 +29,7 @@ const page = async ({ params }: ProductPageProps) => {
   
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 mb-30">
       <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
         {/* Image Section */}
         <div className="rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 aspect-square md:aspect-auto h-full max-h-[600px] relative">

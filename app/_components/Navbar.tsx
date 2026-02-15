@@ -26,6 +26,9 @@ function Navbar({ cart }: { cart?: any }) {
           <Link href="/" className="hover:text-emerald-600 transition-colors">
             Home
           </Link>
+          <Link href="/products" className="hover:text-emerald-600 transition-colors">
+            Products
+          </Link>
 
           <Link
             href="/admin"
