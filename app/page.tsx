@@ -132,7 +132,7 @@ const page = async () => {
             featuredProducts.slice(0, 12).map((product: any) => (
               <Link
                 key={product.id}
-                href={`/products/${product.id}`}
+                href={`/product/${product.id}`}
                 className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
               >
                 <div
