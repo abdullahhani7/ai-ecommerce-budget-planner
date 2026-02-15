@@ -57,7 +57,7 @@ const page = async () => {
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
             <Button className=" ">
-              <Link className="flex items-center" href="/products gap-2">
+              <Link className="flex items-center" href="/products">
                 Shop Now <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
