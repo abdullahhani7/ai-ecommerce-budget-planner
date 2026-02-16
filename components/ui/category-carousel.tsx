@@ -59,7 +59,7 @@ export function CategoryCarousel({ categories }: CategoryCarouselProps) {
               className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
             >
               <Link
-                href={`/products?category=${category.slug}`}
+                href={`/categories/products/${category.slug}`}
                 className="group block h-full"
               >
                 <Card className="h-full border-2 border-transparent hover:border-emerald-100 transition-all duration-300 hover:shadow-lg rounded-2xl overflow-hidden bg-white">
