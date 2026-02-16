@@ -4,6 +4,12 @@ import ProductsList from "../_components/ProductsList";
 import { getCategories, getProductsByCategory } from "@/app/_utils/Api";
 import TopCategoryList from "../_components/TopCategoryList";
 
+interface Category {
+  slug: string;
+  name: string;
+  image: string;
+}
+
 interface CategoryPageProps {
   params: {
     categoryName: string;
@@ -14,7 +20,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
   const { categoryName } = await params;
   // console.log(categoryName);
   const productsByCategoryList = await getProductsByCategory(categoryName);
-  const categoryList = await getCategories();
+  const categoryList: Category[] = (await getCategories()) || [];
 
   // const [productsByCategoryList, setProductsByCategoryList] = useState([]);
   // const [categoryList, setCategoryList] = useState([]);

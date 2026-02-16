@@ -1,7 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const TopCategoryList = ({ categoryList, selectedCategory }) => {
+
+interface Category {
+  slug: string;
+  name: string;
+  image: string;
+}
+
+interface TopCategoryListProps {
+  categoryList: Category[];
+  selectedCategory?: string;
+}
+
+
+
+
+const TopCategoryList = ({ categoryList, selectedCategory }:TopCategoryListProps) => {
   return (
     <div className="gap-10 md:gap-0 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-9  justify-items-center items-center mt-5">
       {categoryList.map((cat, index) => (

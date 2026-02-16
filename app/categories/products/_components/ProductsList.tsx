@@ -3,7 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductsList = ({ productsList, heading }) => {
+interface Product {
+  id: string | number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
+
+interface ProductsListProps {
+  productsList: Product[];
+  heading?: string;
+}
+
+
+const ProductsList = ({ productsList, heading }:ProductsListProps) => {
   return (
     <div className="mt-10 mb-30">
       <h2 className="px-5 font-bold text-2xl text-emerald-500 my-8">
