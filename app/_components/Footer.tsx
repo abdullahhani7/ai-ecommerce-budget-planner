@@ -38,7 +38,7 @@ export default function Footer() {
 
             <div className="space-y-2">
               <p className="font-medium">Company</p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 <Link href="#" className="hover:text-foreground">
                   About
                 </Link>
