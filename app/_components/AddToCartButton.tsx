@@ -41,6 +41,10 @@ export function AddToCartButton({
         // toast.error("Failed to add to cart");
         toast("Login Required", {
           description: "You need an account to add items to your cart.",
+          classNames: {
+            title: "text-xl  text-emerald-800", 
+            description: "  text-gray-500!",  
+          },
           action: {
             label: "Sign In",
             onClick: () => openSignIn(),
