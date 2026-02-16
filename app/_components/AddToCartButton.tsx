@@ -42,7 +42,7 @@ export function AddToCartButton({
         toast("Login Required", {
           description: "You need an account to add items to your cart.",
           classNames: {
-            title: "text-xl  text-emerald-800", 
+            title: "text-emerald-800", 
             description: "  text-gray-500!",  
           },
           action: {
