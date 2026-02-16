@@ -135,10 +135,10 @@ const page = async () => {
                 href={`/product/${product.id}`}
                 className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
               >
-                <div
+                {/* <div
                   key={product.id}
                   className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                >
+                > */}
                   {/* Image Section */}
                   <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
                     <Image
@@ -169,7 +169,7 @@ const page = async () => {
                       </Button>
                     </div>
                   </div>
-                </div>
+                {/* </div> */}
               </Link>
             ))}
         </div>
