@@ -8,9 +8,15 @@ import React from "react";
 import CartSheet from "./CartSheet";
 // import { Button } from './ui/button'
 // import CartSheet from './CartSheet'
+import { useClerk } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 function Navbar({ cart }: { cart?: any }) {
   const { user, isLoaded } = useUser();
+
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
+  const router = useRouter();
 
   return (
     <div className="border-b p-2 bg-white sticky top-0 z-50">
@@ -26,16 +32,25 @@ function Navbar({ cart }: { cart?: any }) {
           <Link href="/" className="hover:text-emerald-600 transition-colors">
             Home
           </Link>
-          <Link href="/products" className="hover:text-emerald-600 transition-colors">
+          <Link
+            href="/products"
+            className="hover:text-emerald-600 transition-colors"
+          >
             Products
           </Link>
 
-          <Link
-            href="/admin"
+          <button
+            onClick={() => {
+              if (!isSignedIn) {
+                openSignIn();
+              } else {
+                router.push("/admin");
+              }
+            }}
             className="hover:text-emerald-600 transition-colors"
           >
             Dashboard
-          </Link>
+          </button>
         </nav>
 
         <div className="flex items-center gap-4">

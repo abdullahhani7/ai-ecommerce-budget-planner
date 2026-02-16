@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Check, Loader2, ShoppingCart } from "lucide-react";
 import { addItemToCart } from "../_utils/Cart";
 import { Button } from "@/components/ui/button";
+import { useClerk } from "@clerk/nextjs";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -25,6 +26,8 @@ export function AddToCartButton({
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
+  const { openSignIn } = useClerk();
+
   const handleAdd = () => {
     startTransition(async () => {
       try {
@@ -37,10 +40,10 @@ export function AddToCartButton({
         // console.error("Failed to add to cart", error);
         // toast.error("Failed to add to cart");
         toast("Login Required", {
-          description: "You need to login first to add this item to your cart.",
-          classNames: {
-            title: " text-lg",
-            description: "!text-gray-500 text-sm",
+          description: "You need an account to add items to your cart.",
+          action: {
+            label: "Sign In",
+            onClick: () => openSignIn(),
           },
         });
       }
