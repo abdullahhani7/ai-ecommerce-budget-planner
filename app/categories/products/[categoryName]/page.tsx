@@ -1,16 +1,20 @@
- 
 // import { useParams } from "next/navigation";
 // import React, { useEffect, useState } from "react";
 import ProductsList from "../_components/ProductsList";
 import { getCategories, getProductsByCategory } from "@/app/_utils/Api";
 import TopCategoryList from "../_components/TopCategoryList";
 
-const CategoryPage = async({ params }) => {
+interface CategoryPageProps {
+  params: {
+    categoryName: string;
+  };
+}
+
+const CategoryPage = async ({ params }: CategoryPageProps) => {
   const { categoryName } = await params;
   // console.log(categoryName);
-    const productsByCategoryList = await getProductsByCategory(categoryName);
-    const categoryList = await getCategories();
-  
+  const productsByCategoryList = await getProductsByCategory(categoryName);
+  const categoryList = await getCategories();
 
   // const [productsByCategoryList, setProductsByCategoryList] = useState([]);
   // const [categoryList, setCategoryList] = useState([]);
@@ -40,7 +44,7 @@ const CategoryPage = async({ params }) => {
   //  const categories = await fetchCategories();
 
   return (
-    <div  >
+    <div>
       <h2 className="bg-emerald-400 text-black font-bold p-4 text-center text-2xl capitalize ">
         {categoryName && decodeURIComponent(categoryName)}
       </h2>
@@ -48,10 +52,10 @@ const CategoryPage = async({ params }) => {
         categoryList={categoryList}
         selectedCategory={categoryName && decodeURIComponent(categoryName)}
       />
-       <ProductsList
+      <ProductsList
         productsList={productsByCategoryList}
         heading={categoryName}
-      />  
+      />
     </div>
   );
 };
