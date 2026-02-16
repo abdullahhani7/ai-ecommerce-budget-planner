@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { getFeaturedProducts } from "../_utils/Api";
+import AddToCartButton from "../_components/AddToCartButton";
 
 const page = async () => {
   async function fetchFeaturedProducts() {
@@ -26,15 +27,14 @@ const page = async () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {featuredProducts &&
           featuredProducts.map((product: any) => (
-            <Link
+            <div
               key={product.id}
-              href={`/product/${product.id}`}
               className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
             >
-              {/* <div
-                key={product.id}
-                className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              > */}
+              <Link
+                href={`/product/${product.id}`}
+                className="flex flex-col flex-1"
+              >
                 {/* Image Section */}
                 <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
                   <Image
@@ -53,20 +53,23 @@ const page = async () => {
                   <p className="text-sm text-gray-500 line-clamp-2 mt-1 mb-4 flex-1">
                     {product.description}
                   </p>
+
                   <div className="flex flex-col items-center justify-between mt-auto">
                     <span className="font-bold text-lg text-emerald-900">
                       ${Number(product.price).toFixed(2)}
                     </span>
-                    <Button
-                      variant="secondary"
-                      className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 w-full p-2"
-                    >
-                      Add To Cart
-                    </Button>
                   </div>
                 </div>
-              {/* </div> */}
-            </Link>
+              </Link>
+
+              <div className="p-4 pt-0">
+                <AddToCartButton
+                  productId={product.id}
+                  size="lg"
+                  className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 w-full p-2"
+                />
+              </div>
+            </div>
           ))}
       </div>
     </div>
