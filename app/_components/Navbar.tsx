@@ -29,12 +29,15 @@ function Navbar({ cart }: { cart?: any }) {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="/" className="hover:text-emerald-600 transition-colors">
+          <Link
+            href="/"
+            className="hover:text-emerald-600 transition-colors duration-300"
+          >
             Home
           </Link>
           <Link
             href="/products"
-            className="hover:text-emerald-600 transition-colors"
+            className="hover:text-emerald-600 transition-colors duration-300"
           >
             Products
           </Link>
@@ -47,7 +50,7 @@ function Navbar({ cart }: { cart?: any }) {
                 router.push("/admin");
               }
             }}
-            className="hover:text-emerald-600 transition-colors"
+            className="hover:text-emerald-600 transition-colors duration-300 cursor-pointer"
           >
             Dashboard
           </button>

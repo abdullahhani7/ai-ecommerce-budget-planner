@@ -1,4 +1,3 @@
-import React from "react";
 import { BudgetPlannerSheet } from "./_components/BudgetPlannerSheet";
 import Link from "next/link";
 import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react";
